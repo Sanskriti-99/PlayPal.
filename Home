@@ -587,7 +587,7 @@
         <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">Popular Games</h2>
         <div class="games-grid">
             <div class="game-card">
-                <img src="/api/placeholder/600/400" alt="BGMI">
+                <img src="https://w0.peakpx.com/wallpaper/947/37/HD-wallpaper-bgmi-bgmi-thumbnail.jpg" alt="BGMI">
                 <div class="game-overlay">
                     <h3 class="game-title">BGMI</h3>
                     <div class="players-count">
@@ -598,7 +598,7 @@
                 <button class="game-action">Join</button>
             </div>
             <div class="game-card">
-                <img src="/api/placeholder/600/400" alt="Call of Duty Mobile">
+                <img src="https://4kwallpapers.com/images/wallpapers/call-of-duty-mobile-android-games-ios-games-1280x1280-778.jpg" alt="Call of Duty Mobile">
                 <div class="game-overlay">
                     <h3 class="game-title">Call of Duty Mobile</h3>
                     <div class="players-count">
@@ -609,7 +609,7 @@
                 <button class="game-action">Join</button>
             </div>
             <div class="game-card">
-                <img src="/api/placeholder/600/400" alt="Free Fire">
+                <img src="https://dl.dir.freefiremobile.com/common/web_event/official2.ff.garena.all/202210/ed36948c8f15a2e6e819ad6175d2dcb4.jpg" alt="Free Fire">
                 <div class="game-overlay">
                     <h3 class="game-title">Free Fire</h3>
                     <div class="players-count">
@@ -620,7 +620,7 @@
                 <button class="game-action">Join</button>
             </div>
             <div class="game-card">
-                <img src="/api/placeholder/600/400" alt="Clash of Clans">
+                <img src="https://wallpapercat.com/w/full/c/0/5/283375-3840x2160-desktop-4k-clash-of-clans-background.jpg" alt="Clash of Clans">
                 <div class="game-overlay">
                     <h3 class="game-title">Clash of Clans</h3>
                     <div class="players-count">
@@ -631,7 +631,7 @@
                 <button class="game-action">Join</button>
             </div>
             <div class="game-card">
-                <img src="/api/placeholder/600/400" alt="Valorant">
+                <img src="https://wallpapers.com/images/high/valorant-1920x1080-v3fe8wvu7ufefvij.webp" alt="Valorant">
                 <div class="game-overlay">
                     <h3 class="game-title">Valorant</h3>
                     <div class="players-count">
@@ -642,7 +642,7 @@
                 <button class="game-action">Join</button>
             </div>
             <div class="game-card">
-                <img src="/api/placeholder/600/400" alt="Apex Legends">
+                <img src="https://images8.alphacoders.com/992/992724.png" alt="Apex Legends">
                 <div class="game-overlay">
                     <h3 class="game-title">Apex Legends</h3>
                     <div class="players-count">
