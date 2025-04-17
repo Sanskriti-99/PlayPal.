@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - PlayPal</title>
+    <style>
+        :root {
+            --primary: #7c5bf5;
+            --dark: #1a1c25;
+            --light: #f5f5f7;
+            --accent: #5ce1e6;
+            --secondary: #9c73ff;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            margin: 0;
+            padding: 0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(124, 91, 245, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(92, 225, 230, 0.1) 0%, transparent 20%);
+        }
+        
+        .navbar {
+            background-color: rgba(26, 28, 37, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--light);
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 32px;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 16px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .nav-links a.active:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+        
+        .btn-login {
+            background-color: transparent;
+            color: var(--light);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-login:hover {
+            background-color: rgba(124, 91, 245, 0.1);
+        }
+        
+        .btn-signup {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+        
+        .btn-signup:hover {
+            background-color: #6849e0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(124, 91, 245, 0.4);
+        }
+        
+        .hero {
+            display: flex;
+            padding: 60px 100px;
+            min-height: 60vh;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            flex: 1;
+            z-index: 2;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(124, 91, 245, 0.3);
+        }
+        
+        h1 {
+            font-size: 48px;
+            margin-bottom: 25px;
+            color: var(--light);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .subtitle {
+            font-size: 22px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: rgba(245, 245, 247, 0.8);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            padding: 40px 100px;
+        }
+        
+        .feature-card {
+            background: rgba(26, 28, 37, 0.8);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(124, 91, 245, 0.2);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(124, 91, 245, 0.6);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: var(--primary);
+            background: rgba(124, 91, 245, 0.1);
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .feature-description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: rgba(245, 245, 247, 0.7);
+        }
+        
+        .gaming-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            opacity: 0.4;
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        .particle-1 {
+            background-color: var(--primary);
+            width: 30px;
+            height: 30px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .particle-2 {
+            background-color: var(--accent);
+            width: 15px;
+            height: 15px;
+            top: 20%;
+            left: 80%;
+            animation-delay: 3s;
+        }
+        
+        .particle-3 {
+            background-color: var(--secondary);
+            width: 20px;
+            height: 20px;
+            top: 70%;
+            left: 15%;
+            animation-delay: 6s;
+        }
+        
+        .particle-4 {
+            background-color: var(--primary);
+            width: 25px;
+            height: 25px;
+            top: 80%;
+            left: 85%;
+            animation-delay: 9s;
+        }
+        
+        .particle-5 {
+            background-color: var(--accent);
+            width: 18px;
+            height: 18px;
+            top: 40%;
+            left: 50%;
+            animation-delay: 12s;
+        }
+        
+        .gaming-icon {
+            position: absolute;
+            opacity: 0.2;
+            font-size: 26px;
+            color: var(--light);
+            animation: spin 20s infinite linear;
+        }
+        
+        .icon-1 {
+            top: 15%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+        
+        .icon-2 {
+            top: 75%;
+            left: 25%;
+            animation-delay: 5s;
+        }
+        
+        .icon-3 {
+            top: 30%;
+            left: 75%;
+            animation-delay: 8s;
+        }
+        
+        .icon-4 {
+            top: 65%;
+            left: 80%;
+            animation-delay: 11s;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(50px, 50px) rotate(90deg);
+            }
+            50% {
+                transform: translate(0, 100px) rotate(180deg);
+            }
+            75% {
+                transform: translate(-50px, 50px) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+        
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 80px 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+        
+        .cta-description {
+            font-size: 18px;
+            margin-bottom: 40px;
+            color: rgba(245, 245, 247, 0.8);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .btn-cta {
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary), #9c73ff);
+            color: var(--light);
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #6849e0, #8a60ff);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(124, 91, 245, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--light);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(124, 91, 245, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .footer {
+            background-color: rgba(20, 21, 28, 0.8);
+            padding: 60px 100px 30px;
+            position: relative;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .footer-logo span {
+            color: var(--primary);
+        }
+        
+        .footer-description {
+            max-width: 300px;
+            color: rgba(245, 245, 247, 0.6);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(124, 91, 245, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary);
+            color: var(--light);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-links-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+        
+        .footer-link {
+            color: rgba(245, 245, 247, 0.6);
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: color 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(245, 245, 247, 0.1);
+            display: flex;
+            justify-content: space-between;
+            color: rgba(245, 245, 247, 0.6);
+            font-size: 14px;
+        }
+        
+        .footer-copyright a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .footer-terms a {
+            color: rgba(245, 245, 247, 0.6);
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+        
+        .footer-terms a:hover {
+            color: var(--primary);
+        }
+        
+        /* Game-specific elements */
+        .game-badge {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--light);
+            font-weight: bold;
+            padding: 25px;
+            transform: rotate(45deg);
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        
+        .level-indicator {
+            display: flex;
+            align-items: center;
+            margin-top: 30px;
+        }
+        
+        .level-text {
+            font-size: 16px;
+            color: var(--light);
+            margin-right: 15px;
+        }
+        
+        .level-bar {
+            flex: 1;
+            height: 10px;
+            background-color: rgba(245, 245, 247, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .level-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 75%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 5px;
+        }
+        
+        .game-stat {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .stat-icon {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .stat-value {
+            font-weight: bold;
+            color: var(--light);
+        }
+        
+        .stat-label {
+            color: rgba(245, 245, 247, 0.6);
+            margin-left: 5px;
+        }
+        
+        .game-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(124, 91, 245, 0.05) 1px, transparent 1px),
+                             linear-gradient(90deg, rgba(124, 91, 245, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-gamepad logo-icon"></i>
+            Play<span>Pal</span>
+        </div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#" class="active">About</a>
+            <a href="#">Games</a>
+            <a href="#">Features</a>
+            <a href="#">Community</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="auth-buttons">
+            <button class="btn btn-login">Login</button>
+            <button class="btn btn-signup">Sign Up</button>
+        </div>
+    </div>
+    
+    <div class="hero">
+        <div class="game-grid"></div>
+        <div class="gaming-particles">
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
+            <div class="particle particle-4"></div>
+            <div class="particle particle-5"></div>
+            <i class="gaming-icon icon-1 fa-solid fa-trophy"></i>
+            <i class="gaming-icon icon-2 fa-solid fa-gamepad"></i>
+            <i class="gaming-icon icon-3 fa-solid fa-headset"></i>
+            <i class="gaming-icon icon-4 fa-solid fa-chess-knight"></i>
+        </div>
+        
+        <div class="hero-content">
+            <h1>About PlayPal</h1>
+            <p class="subtitle">PlayPal is a matchmaking app created to help gamers find the perfect teammates. Swipe right and team up with skilled players who complement your playstyle and aim for victory together. Whether you're looking to climb the ranks or just make new friends, PlayPal connects you with like-minded gamers for an enhanced gaming experience.</p>
+            
+            <div class="level-indicator">
+                <span class="level-text">Player Level: 42</span>
+                <div class="level-bar">
+                    <div class="level-progress"></div>
+                </div>
+            </div>
+            
+            <div class="game-stat">
+                <i class="fa-solid fa-users stat-icon"></i>
+                <span class="stat-value">1.2M+</span>
+                <span class="stat-label">Active Players</span>
+            </div>
+            
+            <div class="game-stat">
+                <i class="fa-solid fa-handshake stat-icon"></i>
+                <span class="stat-value">8.5M+</span>
+                <span class="stat-label">Successful Matches</span>
+            </div>
+            
+            <div class="game-stat">
+                <i class="fa-solid fa-globe stat-icon"></i>
+                <span class="stat-value">180+</span>
+                <span class="stat-label">Countries</span>
+            </div>
+        </div>
+        
+        <div class="hero-image">
+            <img src="/api/placeholder/600/400" alt="PlayPal App Screenshot">
+        </div>
+    </div>
+    
+    <div class="features">
+        <div class="feature-card">
+            <div class="game-badge">PRO</div>
+            <div class="feature-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <h3 class="feature-title">Discover Players</h3>
+            <p class="feature-description">Find gamers with compatible playstyles and skill levels ready to team up. Our advanced matching algorithm ensures you find players who perfectly complement your gaming style.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+            </div>
+            <h3 class="feature-title">Swipe and Match</h3>
+            <p class="feature-description">Use the swipe feature to match with potential teammates who swipe right on you too. Our easy-to-use interface makes finding the perfect teammates feel like a game itself.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fa-solid fa-ranking-star"></i>
+            </div>
+            <h3 class="feature-title">Rank Up Together</h3>
+            <p class="feature-description">Build your dream team and achieve higher ranks by partnering with top players. Track your progress and celebrate victories together with your new gaming squad.</p>
+        </div>
+    </div>
+    
+    <div class="cta-section">
+        <div class="game-grid"></div>
+        <div class="gaming-particles">
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
+            <i class="gaming-icon icon-1 fa-solid fa-medal"></i>
+            <i class="gaming-icon icon-2 fa-solid fa-star"></i>
+        </div>
+        
+        <h2 class="cta-title">Ready to Find Your Gaming Squad?</h2>
+        <p class="cta-description">Join thousands of gamers who've already found their perfect teammates. Whether you're into FPS, MOBA, RPG, or any other genre, there's a perfect match waiting for you on PlayPal.</p>
+        
+        <div class="cta-buttons">
+            <button class="btn btn-cta btn-primary">Download Now</button>
+            <button class="btn btn-cta btn-secondary">Learn More</button>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="game-grid"></div>
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">
+                    <i class="fa-solid fa-gamepad"></i> Play<span>Pal</span>
+                </div>
+                <p class="footer-description">The ultimate platform for gamers to connect, team up, and dominate the leaderboards together.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitch"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links-group">
+                <h4 class="footer-links-title">Company</h4>
+                <a href="#" class="footer-link">About Us</a>
+                <a href="#" class="footer-link">Careers</a>
+                <a href="#" class="footer-link">Press</a>
+                <a href="#" class="footer-link">Blog</a>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+            
+            <div class="footer-links-group">
+                <h4 class="footer-links-title">Features</h4>
+                <a href="#" class="footer-link">Game Matching</a>
+                <a href="#" class="footer-link">Player Stats</a>
+                <a href="#" class="footer-link">Team Building</a>
+                <a href="#" class="footer-link">Tournaments</a>
+                <a href="#" class="footer-link">Premium</a>
+            </div>
+            
+            <div class="footer-links-group">
+                <h4 class="footer-links-title">Support</h4>
+                <a href="#" class="footer-link">Help Center</a>
+                <a href="#" class="footer-link">Safety Center</a>
+                <a href="#" class="footer-link">Community Guidelines</a>
+                <a href="#" class="footer-link">FAQs</a>
+                <a href="#" class="footer-link">Report a Bug</a>
+            </div>
+            
+            <div class="footer-links-group">
+                <h4 class="footer-links-title">Legal</h4>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Cookie Policy</a>
+                <a href="#" class="footer-link">GDPR</a>
+                <a href="#" class="footer-link">Licenses</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                &copy; 2025 PlayPal. All rights reserved. Made with ❤️ for <a href="#">Gamers</a>
+            </div>
+            <div class="footer-terms">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Cookies</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
