@@ -655,7 +655,18 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
+   
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Find Your Dream Team?</h2>
+            <p class="cta-description">Join thousands of players who are already enjoying better matches and making new friends. Sign up takes less than a minute!</p>
+            <a href="#" class="cta-button-large">Create Your Account</a>
+        </div>
+    </section>
+
+ <!-- Testimonials Section -->
     <section class="testimonials">
         <h2 class="section-title">What Gamers Say</h2>
         <p class="section-subtitle">Don't just take our word for it – hear from players who found their perfect team.</p>
@@ -664,7 +675,7 @@
                 <div class="quote-icon">"</div>
                 <p class="testimonial-text">I was stuck in Silver rank for months. After finding a solid team through PlayPal, we ranked up to Diamond in just two weeks!</p>
                 <div class="testimonial-user">
-                    <img src="/api/placeholder/100/100" alt="User Avatar" class="user-avatar">
+                    <img src="https://img.freepik.com/free-vector/cute-astronaut-playing-vr-game-with-controller-cartoon-vector-icon-illustration-science-technology_138676-13977.jpg?ga=GA1.1.434619777.1744877113&semt=ais_hybrid&w=740" alt="User Avatar" class="user-avatar">
                     <div class="user-info">
                         <h4>Alex K.</h4>
                         <p>BGMI Player</p>
@@ -675,7 +686,7 @@
                 <div class="quote-icon">"</div>
                 <p class="testimonial-text">As a casual player, I struggled to find people who matched my play style. PlayPal connected me with an awesome squad who are now my regular gaming buddies.</p>
                 <div class="testimonial-user">
-                    <img src="/api/placeholder/100/100" alt="User Avatar" class="user-avatar">
+                    <img src="https://img.freepik.com/free-vector/cute-girl-gaming-holding-joystick-cartoon-icon-illustration-people-technology-icon-concept-isolated-flat-cartoon-style_138676-2169.jpg?t=st=1744877145~exp=1744880745~hmac=c1cbf2e37bd71aeecd410f51a63166e05166f6ca22802e798313d93aac111edd&w=1380" alt="User Avatar" class="user-avatar">
                     <div class="user-info">
                         <h4>Sarah M.</h4>
                         <p>Call of Duty Player</p>
@@ -686,22 +697,13 @@
                 <div class="quote-icon">"</div>
                 <p class="testimonial-text">The skill matching is spot on! No more carrying teammates or getting carried. Every match feels balanced and competitive now.</p>
                 <div class="testimonial-user">
-                    <img src="/api/placeholder/100/100" alt="User Avatar" class="user-avatar">
+                    <img src="https://img.freepik.com/premium-photo/high-quality-gaming-character-mascot-vector_1004054-21470.jpg?ga=GA1.1.434619777.1744877113&semt=ais_hybrid&w=740" alt="User Avatar" class="user-avatar">
                     <div class="user-info">
                         <h4>Raj P.</h4>
                         <p>Free Fire Player</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="cta-content">
-            <h2 class="cta-title">Ready to Find Your Dream Team?</h2>
-            <p class="cta-description">Join thousands of players who are already enjoying better matches and making new friends. Sign up takes less than a minute!</p>
-            <a href="#" class="cta-button-large">Create Your Account</a>
         </div>
     </section>
 
