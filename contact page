@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -762,6 +763,9 @@
             nav ul {
                 display: none;
             }
+            a{
+            text-decoration: none;
+        }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -772,24 +776,20 @@
             <i class="fa-solid fa-gamepad logo-icon"></i>
             Play<span>Pal</span>
         </div>
-        
+        <div class="nav-links">
+            <a href="home.html" >Home</a>
+            <a href="about.html" >About</a>
+            <a href="#games">Games</a>
+            <a href="features.html">Features</a>
+
+            <a href="#" class="active" >Contact</a>
+
+        </div>
         <div class="auth-buttons">
-            <button class="btn btn-login">Login</button>
-            <button class="btn btn-signup">Sign Up</button>
+            <button class="btn btn-login"><a href="login.html">Login</a></button>
+            <button class="btn btn-signup"><a href="login.html">Sign Up</a></button>
         </div>
     </div>
-<!-- 
-    <div class="container">
-        <nav>
-            <div class="logo">Play<span>Pal</span></div>
-            <ul>
-                <li><a href="homenew.html">Home</a></li>
-                <li><a href="#">Games</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul> -->
-        <!-- </nav> -->
-
         <div class="contact-section">
             <div class="contact-info">
                 <h2 class="section-title">Get In Touch</h2>
