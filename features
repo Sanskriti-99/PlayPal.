@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - PlayPal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #7c5bf5;
+            --dark: #1a1c25;
+            --light: #f5f5f7;
+            --accent: #5ce1e6;
+            --secondary: #9c73ff;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            margin: 0;
+            padding: 0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(124, 91, 245, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(92, 225, 230, 0.1) 0%, transparent 20%);
+            background-attachment: fixed;
+            background-size: cover;
+            position: relative;
+        }
+        a{
+            text-decoration: none;
+        }
+        /* Add background overlay to entire body */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(15, 15, 26, 0.8), rgba(15, 15, 26, 0.9)), url('/api/placeholder/1920/1080') center/cover no-repeat;
+            z-index: -1;
+        }
+        
+        /* Game grid applied to entire body */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(124, 91, 245, 0.05) 1px, transparent 1px),
+                             linear-gradient(90deg, rgba(124, 91, 245, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .navbar {
+            background-color: rgba(26, 28, 37, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--light);
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 32px;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 16px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .nav-links a.active:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+        
+        .btn-login {
+            background-color: transparent;
+            color: var(--light);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-login:hover {
+            background-color: rgba(124, 91, 245, 0.1);
+        }
+        
+        .btn-signup {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+        
+        .btn-signup:hover {
+            background-color: #6849e0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(124, 91, 245, 0.4);
+        }
+
+        /* Features Page Specific Styles */
+        .features-hero {
+            text-align: center;
+            padding: 80px 20px 40px;
+            position: relative;
+        }
+
+        .features-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .features-hero p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: #b8b9c3;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: rgba(30, 32, 46, 0.7);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(124, 91, 245, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(124, 91, 245, 0.5);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            background: rgba(124, 91, 245, 0.1);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+
+        .feature-card p {
+            color: #b8b9c3;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .feature-label {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            color: var(--light);
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .games-badge {
+            display: inline-block;
+            background: rgba(92, 225, 230, 0.1);
+            color: var(--accent);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            border: 1px solid rgba(92, 225, 230, 0.3);
+        }
+
+        .games-container {
+            margin-top: 15px;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 80px 20px;
+            margin-top: 40px;
+            background: linear-gradient(rgba(26, 28, 37, 0.8), rgba(26, 28, 37, 0.9)), url('/api/placeholder/1920/400') center/cover no-repeat;
+            border-radius: 16px;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .btn-cta {
+            padding: 15px 40px;
+            font-size: 18px;
+        }
+
+        .feature-highlight {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-hero h1 {
+                font-size: 36px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-gamepad logo-icon"></i>
+            Play<span>Pal</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="home.html#games">Games</a>
+            <a href="#" class="active">Features</a>
+            
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="auth-buttons">
+            <button class="btn btn-login"><a href="login.html">Login</a></button>
+            <button class="btn btn-signup"><a href="login.html">Sign Up</a></button>
+        </div>
+    </div>
+
+    <div class="features-hero">
+        <h1>Find Your Perfect Squad</h1>
+        <p>PlayPal revolutionizes team building with our innovative features designed specifically for gamers. Discover teammates who match your playstyle and schedule with our Tinder-style matching system.</p>
+    </div>
+
+    <div class="features-container">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-label">CORE FEATURE</div>
+                <div class="feature-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <h3>Game-Based Player Discovery</h3>
+                <p>Easily find players who match your favorite games and playstyle preferences.</p>
+                <div class="games-container">
+                    <span class="games-badge">BGMI</span>
+                    <span class="games-badge">Call of Duty</span>
+                    <span class="games-badge">Free Fire</span>
+                    <span class="games-badge">CoC</span>
+                    <span class="games-badge">Valorant</span>
+                    <span class="games-badge">Apex Legends</span>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-label">SIGNATURE FEATURE</div>
+                <div class="feature-icon">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <h3>Swipe to Squad</h3>
+                <p>Our Tinder-style matching system makes finding teammates fun! Swipe right to like a player. If they like you back — <span class="feature-highlight">Boom! It's a match!</span> Now you're ready to conquer the leaderboard together.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-tags"></i>
+                </div>
+                <h3>Skill & Role Tagging</h3>
+                <p>Search and filter players based on <span class="feature-highlight">skills</span>, <span class="feature-highlight">roles</span> (sniper, support, rusher, etc.), and <span class="feature-highlight">rank level</span> to build your dream squad with perfectly complementary abilities.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-chart-simple"></i>
+                </div>
+                <h3>Compatibility Score</h3>
+                <p>Know how well you vibe with a potential teammate using our smart algorithm that considers playstyle, availability, and communication style to generate a personalized match percentage.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <h3>Voice Chat Integration</h3>
+                <p>In-app <span class="feature-highlight">voice chat</span> support to coordinate strategies and vibe with your team before jumping into the game. Test your communication chemistry before the heat of battle!</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-calendar"></i>
+                </div>
+                <h3>Availability Scheduler</h3>
+                <p>No more "you online?" texts — players can set their <span class="feature-highlight">gaming hours</span>, making it easier to sync playtime with teammates and schedule gaming sessions that work for everyone.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-id-card"></i>
+                </div>
+                <h3>Gamer Profiles</h3>
+                <p>Detailed profiles with <span class="feature-highlight">game stats</span>, <span class="feature-highlight">achievements</span>, favorite weapons/characters, and personal bios to help others understand your playstyle and gaming preferences.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+                <h3>Region & Server Filters</h3>
+                <p>Match with players from your <span class="feature-highlight">region</span> or preferred <span class="feature-highlight">server</span> to reduce lag and improve teamwork. Get paired with teammates in your timezone for better coordination.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                </div>
+                <h3>Mobile Friendly Interface</h3>
+                <p>Whether you're on the go or in bed, swipe and squad up easily from your <span class="feature-highlight">phone or tablet</span>. Our responsive design ensures a seamless experience across all devices.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h3>Quick Match for Urgent Games</h3>
+                <p>Need teammates ASAP? Use the <span class="feature-highlight">Quick Match</span> feature to find ready-to-play users instantly and jump into the game without delay.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <h3>Community Vibes</h3>
+                <p>Join <span class="feature-highlight">game-specific lobbies</span>, <span class="feature-highlight">forums</span>, and <span class="feature-highlight">group chats</span> to make friends, share memes, or discuss game updates and meta changes with like-minded players.</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to Find Your Perfect Squad?</h2>
+            <p>Join thousands of gamers already building dream teams with PlayPal</p>
+            <div class="cta-buttons">
+                <button class="btn btn-signup btn-cta">Create Account</button>
+                <button class="btn btn-login btn-cta">Login to Squad Up</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
