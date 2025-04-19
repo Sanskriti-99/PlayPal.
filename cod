@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PlayPal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background-color: #000;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("https://wallpapers.com/images/featured/call-of-duty-pictures-7lrqnchbx478ucgg.jpg");
+      background-size: cover;
+      background-position: center;
+      filter: blur(2px) brightness(0.7);
+      z-index: -1;
+    }
+
+    .card-container {
+      position: relative;
+      width: 300px;
+      height: 420px;
+    }
+
+    .card {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #111;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      color: white;
+    }
+
+    .card img {
+      width: 100%;
+      height: 50%;
+      object-fit: cover;
+    }
+
+    .card h2 {
+      margin: 10px 0 0;
+    }
+
+    .card p {
+      color: #aaa;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .buttons {
+      margin-top: auto;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .buttons button {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .buttons button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    }
+
+    .like svg {
+      fill: #00ff73;
+    }
+
+    .dislike svg {
+      fill: #ff004f;
+    }
+
+    .card-container .card:nth-child(1) { z-index: 5; }
+    .card-container .card:nth-child(2) { transform: scale(0.95) translateY(15px); z-index: 4; }
+    .card-container .card:nth-child(3) { transform: scale(0.9) translateY(30px); z-index: 3; }
+    .card-container .card:nth-child(4) { transform: scale(0.85) translateY(45px); z-index: 2; }
+    .card-container .card:nth-child(5) { transform: scale(0.8) translateY(60px); z-index: 1; }
+    .card-container .card:nth-child(n+6) { display: none; }
+  </style>
+</head>
+<body>
+
+<div class="card-container" id="cardContainer">
+  <!-- Cards will be injected here by JS -->
+</div>
+
+<script>
+  const profiles = [
+    { name: "1Xerneas_99",rank: "elite", image: "https://i.pinimg.com/736x/22/93/8f/22938f989fb4a6a1850e93c4374b9e7d.jpg" },
+    { name: "2NeonReaper",rank: "Grandmaster", image: "https://i.pinimg.com/236x/7a/36/20/7a36201a871e4494fe445135e1dc28cc.jpg" },
+    { name: "3FrostNova",rank: "pro", image: "https://i.pinimg.com/1200x/05/ab/97/05ab97e34b9fcf55dcbf80d934c55184.jpg" },
+    { name: "4ZeroPulse",rank: "Legendary ", image: "https://i.pinimg.com/564x/38/b3/20/38b320149246711982c6c4b341c2ff28.jpg" },
+    { name: "5NightSyn",rank: "Grandmaster",  image: "https://i.pinimg.com/236x/de/53/c0/de53c066c52aeac8a1b6896d0d79dcf2.jpg" },
+    { name: "6Steller",rank: "CLegendary", image: "https://i.redd.it/ynam7oyyoma51.png" },
+    { name: "7BlazeCipher",rank: "elite", image: "https://i.pinimg.com/236x/02/ae/15/02ae1578acdd346d68246508f1a5e3bf.jpg" },
+    { name: "8Error-04",rank: "pro", image: "https://i.pinimg.com/564x/0e/b3/6d/0eb36d78ae478211dd15e85d11457c65.jpg" },
+    { name: "9ArchDiablo", rank: "Legendary", image: "https://i.pinimg.com/200x150/8e/a9/44/8ea944581cb87dd9571b02b9f2d87f15.jpg" }
+  ];
+
+  const container = document.getElementById("cardContainer");
+
+  function createCard(profile) {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <img src="${profile.image}" alt="${profile.name}" />
+      <h2>${profile.name}</h2>
+      <h4>${profile.rank}</h4>
+      <p>Swipe to squad up!</p>
+      <div class="buttons">
+        <button class="dislike" title="Reject">
+          <svg width="30" height="30" viewBox="0 0 24 24"><path d="M18.36 6.64a1 1 0 0 0-1.41 0L12 11.59 7.05 6.64a1 1 0 1 0-1.41 1.41L10.59 13l-4.95 4.95a1 1 0 1 0 1.41 1.41L12 14.41l4.95 4.95a1 1 0 0 0 1.41-1.41L13.41 13l4.95-4.95a1 1 0 0 0 0-1.41z"/></svg>
+        </button>
+        <button class="like" title="Accept">
+          <svg width="30" height="30" viewBox="0 0 24 24">
+            <path d="M20.285 6.709a1 1 0 0 0-1.414-1.418l-9.193 9.186-4.242-4.244a1 1 0 0 0-1.414 1.418l5.657 5.66a1 1 0 0 0 1.414 0l9.192-9.602z"/>
+          </svg>
+        </button>
+      </div>
+    `;
+
+    const likeBtn = card.querySelector(".like");
+    const dislikeBtn = card.querySelector(".dislike");
+
+    likeBtn.addEventListener("click", () => {
+      card.style.transform = "translateX(100%) rotate(15deg)";
+      card.style.opacity = "0";
+      setTimeout(() => card.remove(), 300);
+    });
+
+    dislikeBtn.addEventListener("click", () => {
+      card.style.transform = "translateX(-100%) rotate(-15deg)";
+      card.style.opacity = "0";
+      setTimeout(() => card.remove(), 300);
+    });
+
+    return card;
+  }
+
+  profiles.reverse().forEach(profile => {
+    const card = createCard(profile);
+    container.appendChild(card);
+  });
+</script>
+
+</body>
+</html>
