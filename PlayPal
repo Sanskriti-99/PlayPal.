@@ -268,7 +268,7 @@
             height: 15px;
             top: 20%;
             left: 80%;
-            animation-delay: 3s;
+            animation-delay: 3s ;
         }
         
         .particle-3 {
